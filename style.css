@@ -1,32 +1,132 @@
-body {
+/* --- RESET & BASE --- */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     overflow: hidden;
-    background-color: #111;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background-color: #87CEEB; /* Color coherente con el cielo */
 }
 
-canvas {
-    display: block;
-}
-
-#ui {
+/* --- HUD (TOP LEFT) --- */
+#hud {
     position: absolute;
-    top: 30px;
-    left: 30px;
+    top: 20px;
+    left: 20px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 15px 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     color: white;
-    pointer-events: none; 
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-h1 {
-    margin: 0;
-    font-size: 24px;
-    letter-spacing: 3px;
-    color: #ff0000;
+#hud h1 {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
 }
 
-p {
-    margin-top: 5px;
+#hud h1 span {
+    font-weight: 300;
     opacity: 0.8;
+}
+
+#hud p {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* --- PANTALLA DE VICTORIA --- */
+#win-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.win-content {
+    background: white;
+    padding: 40px 60px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transform: scale(1);
+    animation: popIn 0.6s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+}
+
+.icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 10px #ffd700);
+}
+
+h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.win-content p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* --- BOTÓN ESTILIZADO --- */
+button {
+    background: linear-gradient(135deg, #7cfc00, #4b6e2f);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(124, 252, 0, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.hint {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popIn {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
 }
